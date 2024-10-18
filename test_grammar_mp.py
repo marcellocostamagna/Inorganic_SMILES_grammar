@@ -2,7 +2,7 @@ import signal
 import time
 import multiprocessing
 from cfg_util import *
-from smiles_grammar_new import GCFG
+from smiles_grammar_test import GCFG
 import numpy as np
 
 # Define a timeout handler

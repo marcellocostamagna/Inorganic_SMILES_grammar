@@ -4,7 +4,7 @@ rdBase.DisableLog('rdApp.*')
 import numpy as np
 import nltk
 import copy
-from smiles_grammar_new import GCFG
+from smiles_grammar_test import GCFG
 from cfg_util import *
 
 def mutation(gene):

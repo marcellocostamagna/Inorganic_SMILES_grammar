@@ -1,10 +1,7 @@
 # Script to test the correct process of encoding a smiles into a gene and decoding it back to a smiles
 
-
 from cfg_util import *
-# from smiles_grammar import GCFG
-# from smiles_grammar_new import GCFG
-from smiles_grammar_new import GCFG
+from deprecated.smiles_grammar_new import GCFG
 from GOs import mutation
 import numpy as np
 import time

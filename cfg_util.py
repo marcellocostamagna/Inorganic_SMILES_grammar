@@ -2,7 +2,7 @@ import nltk
 
 import numpy as np
 
-from smiles_grammar_new import GCFG
+from smiles_grammar_test import GCFG
 
 
 def get_smiles_tokenizer(cfg):
