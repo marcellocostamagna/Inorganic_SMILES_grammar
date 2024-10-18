@@ -18,8 +18,7 @@ branched_atom -> metal_complex
 atom -> bracket_atom
 atom -> aliphatic_organic
 atom -> aromatic_organic
-atom -> sulfur_aromatic 
-atom -> bracketed_atom_symbol 
+atom -> sulfur_aromatic  
 
 # Handling transition metals and their different bonding states, charges, hydrogens, and ring closures
 bracket_atom -> '[' metal_symbol ']'
@@ -38,9 +37,6 @@ bracket_atom -> '[' BAI ']'
 bracket_atom -> '[' BAI ringbond ']'
 bracket_atom -> '[' BAI charge ']'
 bracket_atom -> '[' BAI BB ']'
-
-# Handling atoms in brackets directly, e.g., [Sc]
-bracketed_atom_symbol -> '[Sc]' 
 
 # Handling complex metal-ligand coordination structures
 metal_complex -> '[' metal_symbol complex_ligands ']'
@@ -63,11 +59,11 @@ ligand -> metal_complex
 sulfur_aromatic -> 'S' 'c'
 
 # Defining allowed metal symbols (must be used with brackets)
-metal_symbol -> 'Cd' | 'Os' | 'Ti' | 'Rh' | 'Ce' | 'Hg' | 'Cf' | 'Pt' | 'Au' | 'Lu' | 'Cm' | 'Ni' | 'Ho' | 'Nd' | 'Np' | 'Pu' | 'Yb' | 'Tb' | 'Pa' | 'Ag' | 'V' | 'La' | 'U' | 'Ru' | 'Eu' | 'Pd' | 'Zn' | 'Cr' | 'Sm' | 'Am' | 'Dy' | 'Nb' | 'Re' | 'W' | 'Th' | 'Pr' | 'Hf' | '[Sc]' | 'Tm' | 'Mn' | 'Mo' | 'Y' | 'Er' | 'Co' | 'Tc' | 'Gd' | 'Zr' | 'Ta' | 'Fe' | 'Bk' | 'Cu' | 'Ir' | 'Li' | 'Na' | 'Sn' | 'Bi' | 'Sb' | 'K' | 'Al' | 'Rb' | 'Ba' | 'Pb' | 'Mg'
+metal_symbol -> 'Cd' | 'Os' | 'Ti' | 'Rh' | 'Ce' | 'Hg' | 'Cf' | 'Pt' | 'Au' | 'Lu' | 'Cm' | 'Ni' | 'Ho' | 'Nd' | 'Np' | 'Pu' | 'Yb' | 'Tb' | 'Pa' | 'Ag' | 'V' | 'La' | 'U' | 'Ru' | 'Eu' | 'Pd' | 'Zn' | 'Cr' | 'Sm' | 'Am' | 'Dy' | 'Nb' | 'Re' | 'W' | 'Th' | 'Pr' | 'Hf' | '[Sc]' | 'Tm' | 'Mn' | 'Mo' | 'Y' | 'Er' | 'Co' | 'Tc' | 'Gd' | 'Zr' | 'Ta' | 'Fe' | 'Bk' | 'Cu' | 'Ir' | 'Li' | 'Na' | 'Ge' | 'Ga' | 'Te'
 
 # Existing rules for organic and inorganic atoms
 # Non-metal elements that are not in brackets
-aliphatic_organic -> 'B' | 'C' | 'F' | 'H' | 'I' | 'N' | 'O' | 'P' | 'S' | 'Cl' | 'Br' | 'Si' | 'Se' | 'As' | 'Ge' | 'Ga' | 'Te'
+aliphatic_organic -> 'B' | 'C' | 'F' | 'H' | 'I' | 'N' | 'O' | 'P' | 'S' | 'Cl' | 'Br' | 'Si' | 'Se' | 'As'
 
 aromatic_organic -> 'b' | 'c' | 'n' | 'o' | 'p' | 's' | 'se'
 
@@ -97,7 +93,7 @@ chiral -> '@' | '@@'
 hcount -> 'H' | 'H' DIGIT
 charge -> '-' | '-' DIGIT | '-' DIGIT DIGIT | '+' | '+' DIGIT | '+' DIGIT DIGIT
 
-bond -> '-' | '=' | '#' | '/' | '\\' | ':' 
+bond -> '-' | '=' | '#' | '/' | '\\'
 
 # Extend ringbond to include % followed by double digits
 ringbond -> DIGIT | bond DIGIT | DIGIT DIGIT | bond DIGIT DIGIT | '%' DIGIT DIGIT | bond '%' DIGIT DIGIT
