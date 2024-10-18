@@ -2,15 +2,31 @@ import nltk
 
 import numpy as np
 
-from . import smiles_grammar
+from smiles_grammar_new import GCFG
 
 
 def get_smiles_tokenizer(cfg):
     long_tokens = [a for a in cfg._lexical_index.keys() if len(a) > 1]
-    # there are currently 6 double letter entities in the grammar
+    # there are currently 6 double letter entities in the grammar (7 with a new metal)
     # these are their replacement, with no particular meaning
     # they need to be ascii and not part of the SMILES symbol vocabulary
-    replacements = ['!', '?', '.', ',', ';', '$']
+    # replacements = ['!', '?', '.', ',', ';', '$', '_'] #(one symbol added)
+    
+    replacements = [
+    '!', '?', '$', '&', '*', '~', '_', ';', '.', ',',
+    '`', '|', '<', '>', '{', '}', '§', '^', 'a', 'A',
+    'z', 'Z', 'm', 'M', 'd', 'D', 'e', 'E', 'g', 'G',
+    'j', 'J', 'l', 'L', 'q', 'Q', 'r', 'R', 't', 'T',
+    'x', 'X', '"', '´', '˚', 'å', 'Å', 'ø', 'Ø', '¨',
+    'ä', 'Ä', 'ö', 'Ö', 'ü', 'Ü', 'á', 'Á', 'é', 'É',
+    'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'à', 'À', 'è', 'È',
+    'ì', 'Ì', 'ò', 'Ò', 'ù', 'Ù', 
+    ]
+    
+    
+    # print(f'Long tokens: {len(long_tokens)}')
+    # # print(f'Long tokens: {long_tokens}')
+    # print(f'Replacements: {len(replacements)}')
     assert len(long_tokens) == len(replacements)
     for token in replacements:
         assert token not in cfg._lexical_index
@@ -26,15 +42,19 @@ def get_smiles_tokenizer(cfg):
             except Exception:
                 tokens.append(token)
         return tokens
+    
     return tokenize
 
 
 def encode(smiles):
-    GCFG = smiles_grammar.GCFG
     tokenize = get_smiles_tokenizer(GCFG)
     tokens = tokenize(smiles)
     parser = nltk.ChartParser(GCFG)
-    parse_tree = parser.parse(tokens).__next__()
+    try:
+        parse_tree = parser.parse(tokens).__next__()
+    except StopIteration:
+        # print(f'Failed to parse {smiles}')
+        return None
     productions_seq = parse_tree.productions()
     productions = GCFG.productions()
     prod_map = {}
@@ -58,8 +78,43 @@ def prods_to_eq(prods):
     except Exception:
         return ''
 
-
 def decode(rule):
-    productions = smiles_grammar.GCFG.productions()
+    productions = GCFG.productions()
     prod_seq = [productions[i] for i in rule]
     return prods_to_eq(prod_seq)
+
+def cfg_to_gene(prod_rules, max_len=-1):
+    gene = []
+    for r in prod_rules:
+        lhs = GCFG.productions()[r].lhs()
+        possible_rules = [idx for idx, rule in enumerate(GCFG.productions())
+                          if rule.lhs() == lhs]
+        gene.append(possible_rules.index(r))
+    if max_len > 0:
+        if len(gene) > max_len:
+            gene = gene[:max_len]
+        else:
+            gene = gene + [np.random.randint(0, 256)
+                           for _ in range(max_len - len(gene))]
+    return gene
+
+
+def gene_to_cfg(gene):
+    prod_rules = []
+    stack = [GCFG.productions()[0].lhs()]
+    for g in gene:
+        try:
+            lhs = stack.pop()
+        except Exception:
+            break
+        possible_rules = [idx for idx, rule in enumerate(GCFG.productions())
+                          if rule.lhs() == lhs]
+        rule = possible_rules[g % len(possible_rules)]
+        prod_rules.append(rule)
+        rhs = filter(lambda a: (type(a) == nltk.grammar.Nonterminal) and (str(a) != 'None'),
+                     GCFG.productions()[rule].rhs())
+        rhs_list = list(rhs)
+        rhs_list_reversed = rhs_list[::-1]
+        stack.extend(rhs_list_reversed)
+        # stack.extend(list(rhs)[::-1])   
+    return prod_rules
