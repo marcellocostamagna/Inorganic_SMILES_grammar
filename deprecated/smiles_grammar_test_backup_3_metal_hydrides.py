@@ -23,12 +23,12 @@ atom -> sulfur_aromatic
 # Handling transition metals and their different bonding states, charges, hydrogens, and ring closures
 bracket_atom -> '[' metal_symbol ']'
 bracket_atom -> '[' metal_symbol hcount ']'
-bracket_atom -> '[' metal_symbol charge ']'
-bracket_atom -> '[' metal_symbol hcount charge ']'
 bracket_atom -> '[' metal_symbol ringbond ']'
 bracket_atom -> '[' metal_symbol hcount ringbond ']'
+bracket_atom -> '[' metal_symbol charge ']'
+bracket_atom -> '[' metal_symbol charge hcount ']'
 bracket_atom -> '[' metal_symbol charge ringbond ']'
-bracket_atom -> '[' metal_symbol hcount charge ringbond ']'
+bracket_atom -> '[' metal_symbol charge hcount ringbond ']'
 bracket_atom -> '[' metal_symbol BB ']'
 bracket_atom -> '[' metal_symbol RB ']'
 bracket_atom -> '[' metal_symbol RB BB ']'
@@ -40,11 +40,10 @@ bracket_atom -> '[' BAI BB ']'
 
 # Handling complex metal-ligand coordination structures
 metal_complex -> '[' metal_symbol complex_ligands ']'
-metal_complex -> '[' metal_symbol hcount complex_ligands ']'
 metal_complex -> '[' metal_symbol charge complex_ligands ']'
-metal_complex -> '[' metal_symbol hcount charge complex_ligands ']'
+metal_complex -> '[' metal_symbol hcount complex_ligands ']'
+metal_complex -> '[' metal_symbol charge hcount complex_ligands ']'
 metal_complex -> '[' metal_symbol ringbond complex_ligands ']'
-metal_complex -> '[' metal_symbol hcount charge ringbond complex_ligands ']'
 metal_complex -> '[' metal_symbol RB BB complex_ligands ']'
 
 complex_ligands -> ligand
