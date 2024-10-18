@@ -41,8 +41,6 @@ bracket_atom -> '[' BAI BB ']'
 
 # Handling atoms in brackets directly, e.g., [Sc]
 bracketed_atom_symbol -> '[Sc]' 
-bracketed_atom_symbol -> '[Sc+]'
-bracketed_atom_symbol -> '[Sc+ DIGIT]'
 
 # Handling complex metal-ligand coordination structures
 metal_complex -> '[' metal_symbol complex_ligands ']'
@@ -65,7 +63,7 @@ ligand -> metal_complex
 sulfur_aromatic -> 'S' 'c'
 
 # Defining allowed metal symbols (must be used with brackets)
-metal_symbol -> 'Cd' | 'Os' | 'Ti' | 'Rh' | 'Ce' | 'Hg' | 'Cf' | 'Pt' | 'Au' | 'Lu' | 'Cm' | 'Ni' | 'Ho' | 'Nd' | 'Np' | 'Pu' | 'Yb' | 'Tb' | 'Pa' | 'Ag' | 'V' | 'La' | 'U' | 'Ru' | 'Eu' | 'Pd' | 'Zn' | 'Cr' | 'Sm' | 'Am' | 'Dy' | 'Nb' | 'Re' | 'W' | 'Th' | 'Pr' | 'Hf' | '[Sc]' | 'Tm' | 'Mn' | 'Mo' | 'Y' | 'Er' | 'Co' | 'Tc' | 'Gd' | 'Zr' | 'Ta' | 'Fe' | 'Bk' | 'Cu' | 'Ir' | 'Li' | 'Na' | 'Sn' | 'Bi' | 'Sb' | 'K' | 'Al' | 'Rb' | 'Ba' | 'Pb' | 'Mg' | 'Be' | 'Ca' | 'Sr' | 'Cs' | 'In' | 'Tl' 
+metal_symbol -> 'Cd' | 'Os' | 'Ti' | 'Rh' | 'Ce' | 'Hg' | 'Cf' | 'Pt' | 'Au' | 'Lu' | 'Cm' | 'Ni' | 'Ho' | 'Nd' | 'Np' | 'Pu' | 'Yb' | 'Tb' | 'Pa' | 'Ag' | 'V' | 'La' | 'U' | 'Ru' | 'Eu' | 'Pd' | 'Zn' | 'Cr' | 'Sm' | 'Am' | 'Dy' | 'Nb' | 'Re' | 'W' | 'Th' | 'Pr' | 'Hf' | '[Sc]' | 'Tm' | 'Mn' | 'Mo' | 'Y' | 'Er' | 'Co' | 'Tc' | 'Gd' | 'Zr' | 'Ta' | 'Fe' | 'Bk' | 'Cu' | 'Ir' | 'Li' | 'Na' | 'Sn' | 'Bi' | 'Sb' | 'K' | 'Al' | 'Rb' | 'Ba' | 'Pb' | 'Mg'
 
 # Existing rules for organic and inorganic atoms
 # Non-metal elements that are not in brackets
