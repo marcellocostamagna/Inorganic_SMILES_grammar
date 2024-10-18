@@ -56,7 +56,7 @@ metal_symbol -> 'Cd' | 'Os' | 'Ti' | 'Rh' | 'Ce' | 'Hg' | 'Cf' | 'Pt' | 'Au' | '
 
 # Existing rules for organic and inorganic atoms
 # Non-metal elements that are not in brackets
-aliphatic_organic -> 'B' | 'C' | 'F' | 'H' | 'I' | 'N' | 'O' | 'P' | 'S' | 'Cl' | 'Br' | 'Si' | 'Se' | 'As' | 'Ge' | 'Te' | 'Ga' 
+aliphatic_organic -> 'B' | 'C' | 'F' | 'H' | 'I' | 'N' | 'O' | 'P' | 'S' | 'Cl' | 'Br' | 'Si' | 'Se' | 'As'
 
 aromatic_organic -> 'b' | 'c' | 'n' | 'o' | 'p' | 's' | 'se'
 
