@@ -26,7 +26,7 @@ print(f'Decoded smiles: {decoded_smiles}\n')
 
 # Decoding (from decoded smiles back to smiles)
 final_smiles = decode(decoded_smiles)
-print(f'Original smiles: {smiles}')
+# print(f'Original smiles: {smiles}')
 print(f'Final smiles:    {final_smiles}\n')
 
 print(f'Time taken: {time.time() - start} seconds')

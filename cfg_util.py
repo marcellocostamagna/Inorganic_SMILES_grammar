@@ -56,6 +56,8 @@ def encode(smiles):
         # print(f'Failed to parse {smiles}')
         return None
     productions_seq = parse_tree.productions()
+    # print(parse_tree.productions())
+    # print(f'Length of productions_seq: {len(productions_seq)}')
     productions = GCFG.productions()
     prod_map = {}
     for ix, prod in enumerate(productions):
@@ -81,6 +83,8 @@ def prods_to_eq(prods):
 def decode(rule):
     productions = GCFG.productions()
     prod_seq = [productions[i] for i in rule]
+    # print(prod_seq)
+    # print(f'Length of prod_seq: {len(prod_seq)}')
     return prods_to_eq(prod_seq)
 
 def cfg_to_gene(prod_rules, max_len=-1):
@@ -113,8 +117,8 @@ def gene_to_cfg(gene):
         prod_rules.append(rule)
         rhs = filter(lambda a: (type(a) == nltk.grammar.Nonterminal) and (str(a) != 'None'),
                      GCFG.productions()[rule].rhs())
-        rhs_list = list(rhs)
-        rhs_list_reversed = rhs_list[::-1]
-        stack.extend(rhs_list_reversed)
-        # stack.extend(list(rhs)[::-1])   
+        # rhs_list = list(rhs)
+        # rhs_list_reversed = rhs_list[::-1]
+        # stack.extend(rhs_list_reversed)
+        stack.extend(list(rhs)[::-1])   
     return prod_rules
