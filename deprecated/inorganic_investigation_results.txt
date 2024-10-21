@@ -1,0 +1,15 @@
+Overall Analysis:
+Metric                                                      Count
+----------------------------------------------------------------------
+Total Number of processed SMILES                            200000
+Total Number of successful SMILES                           178349
+Total Number of SMILES in (1, 5)                            7533
+Total Number of SMILES in (5, 10)                           1697
+Total Number of SMILES in (10, 15)                          675
+Total Number of SMILES in (15, 20)                          502
+Total Number of SMILES in (20, 25)                          331
+Total Number of SMILES in (25, 30)                          253
+Total Number of SMILES in >MAX_TIME                         21596
+Total Number of SMILES in failures                          55
+Max Time taken for any SMILES                               30.00 seconds
+Total Time taken for program execution                      123930.91 seconds
