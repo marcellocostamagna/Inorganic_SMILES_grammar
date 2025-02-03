@@ -4,7 +4,7 @@ import multiprocessing
 import os
 import tempfile
 from cfg_util import *
-from smiles_grammar_test import GCFG
+from smiles_grammar import GCFG
 import numpy as np
 
 # Define a timeout handler
