@@ -1,6 +1,6 @@
 import signal
 from cfg_util import *
-from smiles_grammar import GCFG
+from smiles_grammar_inorganic import GCFG
 import numpy as np
 import time
 

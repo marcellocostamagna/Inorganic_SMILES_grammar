@@ -5,7 +5,7 @@ import os
 import tempfile
 from queue import Empty
 from cfg_util import *
-from smiles_grammar import GCFG
+from smiles_grammar_inorganic import GCFG
 import numpy as np
 
 # Define a timeout handler
