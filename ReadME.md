@@ -6,5 +6,13 @@ This is achieved by readapting the code of [ChemGE](https://github.com/tsudalab/
 
 ## Original Code 
 
-Contains the code obtained from Guacamol
+Contains the code obtained from Guacamol, meaning the original grammar used for organi SMILES.
+
+## Inorganic Grammar Analysis
+
+Contains the scripts to investigate and test the grammar rules added to deal with inorganic SMILES
+
+## Final results
+
+Contains the script and the grammar able to generate and modify Inorganic SMILES
 
