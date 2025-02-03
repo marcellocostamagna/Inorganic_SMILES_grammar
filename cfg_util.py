@@ -1,8 +1,9 @@
 import nltk
 
+import nltk.parse.chart
 import numpy as np
 
-from smiles_grammar_test import GCFG
+from smiles_grammar import GCFG
 
 
 def get_smiles_tokenizer(cfg):
@@ -20,7 +21,7 @@ def get_smiles_tokenizer(cfg):
     'x', 'X', '"', '´', '˚', 'å', 'Å', 'ø', 'Ø', '¨',
     'ä', 'Ä', 'ö', 'Ö', 'ü', 'Ü', 'á', 'Á', 'é', 'É',
     'í', 'Í', 'ó', 'Ó', 'ú', 'Ú', 'à', 'À', 'è', 'È',
-    'ì', 'Ì', 'ò', 'Ò', 'ù', 'Ù', 
+    'ì', 'Ì', 'ò', 'Ò', 'ù', 'Ù', 'â', 'Â', 'ê', 
     ]
     
     
@@ -56,13 +57,14 @@ def encode(smiles):
         # print(f'Failed to parse {smiles}')
         return None
     productions_seq = parse_tree.productions()
+    # print(productions_seq)
     # print(parse_tree.productions())
     # print(f'Length of productions_seq: {len(productions_seq)}')
     productions = GCFG.productions()
     prod_map = {}
     for ix, prod in enumerate(productions):
         prod_map[prod] = ix
-    indices = np.array([prod_map[prod] for prod in productions_seq], dtype=int)
+    indices = np.array([prod_map[prod] for prod in productions_seq], dtype=int)  
     return indices
 
 

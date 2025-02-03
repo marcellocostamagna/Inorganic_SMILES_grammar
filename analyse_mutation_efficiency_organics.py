@@ -9,7 +9,7 @@ original_code = False
 if original_code:
     from original_code.smiles_grammar import GCFG
 else:    
-    from smiles_grammar_test import GCFG
+    from smiles_grammar import GCFG
 
 from cfg_util import *
 from GOs import mutation

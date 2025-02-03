@@ -2,7 +2,7 @@ import signal
 import time
 import multiprocessing
 from cfg_util import *
-from smiles_grammar_test import GCFG
+from smiles_grammar import GCFG
 import numpy as np
 
 # Define a timeout handler
@@ -78,11 +78,12 @@ def process_smiles_batch(batch_index, smiles_batch, time_limit, results_queue):
 
 # Main function to execute multiprocessing
 def main():
-    smiles_file = 'smiles.txt'
-    total_processes = 7
-    batch_size = 1000
-    time_limit = 1  # Time limit for each SMILES in seconds
-    start_index = 200000  # Starting index for processing the SMILES list
+    # smiles_file = 'smiles.txt'
+    smiles_file = 'final_failures.txt'
+    total_processes = 3
+    batch_size = 15
+    time_limit = 5  # Time limit for each SMILES in seconds
+    start_index = 0  # Starting index for processing the SMILES list
 
     # Read smiles from file and store them in a list
     with open(smiles_file, 'r') as f:
